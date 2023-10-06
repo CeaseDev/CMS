@@ -7,6 +7,9 @@ dotenv.config() ;
 const PORT = process.env.PORT  || 3000 ; 
 
 app.use(express.json())  ;
+const user = require("./routes/user") ; 
+app.use("/api/v1", user); 
+
 
 const dbConnect = require("./config/db") ; 
 dbConnect() ; 
