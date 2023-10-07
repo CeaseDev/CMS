@@ -2,33 +2,33 @@ const express = require("express") ;
 const router = express.Router() ; 
 
 const {uploadDoc} = require("../controllers/documentController");  
- 
+const { createDirectory } = require("../middlewares/upload") ; 
 
 const multer = require('multer') ;
 const fs = require("fs") ; 
 const path = require("path") ; 
-const createDirectory = (req, res, next) => {
-    const id = req.header('id');
+// const createDirectory = (req, res, next) => {
+//     const id = req.header('id');
 
-    if (!id) {
-      return res.status(400).send('ID not provided in the header');
-    }
+//     if (!id) {
+//       return res.status(400).send('ID not provided in the header');
+//     }
   
-    const directoryPath = `./public/${id}`;
+//     const directoryPath = `./public/${id}`;
   
-    if (fs.existsSync(directoryPath)) {
-      return next();
-    }
+//     if (fs.existsSync(directoryPath)) {
+//       return next();
+//     }
   
-    fs.mkdir(directoryPath, (err) => {
-      if (err) {
-        return res.status(500).send('Failed to create directory');
-        console.log(error) ; 
-        process.exit(1) ; 
-      }
-      next();
-    });
-  };
+//     fs.mkdir(directoryPath, (err) => {
+//       if (err) {
+//         return res.status(500).send('Failed to create directory');
+//         console.log(error) ; 
+//         process.exit(1) ; 
+//       }
+//       next();
+//     });
+//   };
   
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -53,8 +53,12 @@ const createDirectory = (req, res, next) => {
 
 const upload  = multer({storage:storage}) ;
 
-// mapping 
+
 
 router.post("/document/upload", createDirectory , upload.single('file') , uploadDoc ) ; 
+// router.get( "/document/view", viewDoc) ; 
 
 module.exports = router ;   
+
+
+
