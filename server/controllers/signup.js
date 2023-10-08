@@ -71,39 +71,21 @@ module.exports = router;
 
 
 
-// {
-//     username: 'akxel',
-//     email: 'ceo@spacex.us',
-//     phone: 999,
-//     password: 'U2FsdGVkX18RlQWHZpr7dT5H7LekJIjxkNNZgSZO4zE=',   "1234"
-//     _id: new ObjectId("6521be4cbd279c713505a907"),
-//     createdAt: 2023 - 10-07T20: 23: 41.002Z,
-//     updatedAt: 2023 - 10-07T20: 23: 41.002Z,
-//     __v: 0
-// }
+
+const mongoose = require("mongoose");
+
+const User = require("../models/user.js");
 
 
-//judge
-// {
-//     username: 'akxel',
-//     email: 'ceo@spacex.us',
-//     phone: 999,
-//     password: 'U2FsdGVkX19jA9y7OGO2fF0t57GwKCQa9jfxGWYOcNE=',
-//     _id: new ObjectId("6521c28b18309fa2db08dc87"),
-//     createdAt: 2023 - 10-07T20: 41: 47.303Z,
-//     updatedAt: 2023 - 10-07T20: 41: 47.303Z,
-//     __v: 0
-// }
+router.post('/',async (req,res,next)=>{
+    console.log(req.body.name);
 
+    const createUser = new User({
+        name : req.body.name,
+        // password : req.body.password
+        
+    })
 
-//user
-// {
-//     username: 'akxel',
-//     email: 'ceo@spacex.us',
-//     phone: 999,
-//     password: 'U2FsdGVkX1/PSg/sn7SXGnR74fT8VTo8JdLVNX2p/KU=',
-//     _id: new ObjectId("6521c48b18a4551c5e811071"),
-//     createdAt: 2023 - 10-07T20: 50: 19.663Z,
-//     updatedAt: 2023 - 10-07T20: 50: 19.663Z,
-//     __v: 0
-// }
+})
+
+module.exports = router;

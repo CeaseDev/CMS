@@ -8,6 +8,12 @@ const judgeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+
+    phone:{
+        type:Number,
+        required: true
+    },
+
     email: {
         type: String,
         required: true,

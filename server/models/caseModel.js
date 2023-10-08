@@ -12,6 +12,11 @@ import Attorneys from './attorneys';
 import Judge from './judge';
 const caseSchema = new mongoose.Schema({
 
+import Attorney from './attorneys';
+import Judge from './judge';
+const caseSchema = new mongoose.Schema({
+
+  caseNumber: { type: String, required: true },
   caseTitle: { type: String, required: true },
   caseType: { type: String, required: true },
   caseStatus: { type: Boolean, required: true, default: false }, //false == not complete 
@@ -36,39 +41,23 @@ const caseSchema = new mongoose.Schema({
       type: Date,
       default: Date.now
     },
+
+    type: mongoose.SchemaType.lawyerSchema,
+    ref: "Attorney"
+  },
+  party2: {
+    type: mongoose.SchemaType.lawyerSchema,
+    ref: "Attorney"
+  },
+
+  proceding: [{
+    date: { default: new Date() },
     description: { type: String, required: true },
     outcome: { type: String, required: true }
   }]
 
 }, { timestamps: true });
-// const caseSchema = new mongoose.Schema({
-//   caseNumber: { type: String, required: true },
-//   filingDate: { type: Date, required: true },
-//   status: { type: String, required: true, default:"pending" },
-//   courtLocation: { type: String, required: true },
-//   judge: { type: String, required: true },
-//   attorneys: [
-//     {
-//       name: { type: String, required: true },
-//       role: { type: String, required: true }
-//     }
-//   ],
-//   parties: [
-//     {
-//       name: { type: String, required: true },
-//       type: { type: String, required: true },
-//       attorney: { type: String }
-//     }
-//   ],
-//   documents: [documentSchema], // Array of documents
-//   proceedings: [
-//     {
-//       date: { type: Date, required: true },
-//       description: { type: String, required: true },
-//       outcome: { type: String, required: true }
-//     }
-//   ]
-// });
+
 
 const Case = mongoose.model('Case', caseSchema);
 
