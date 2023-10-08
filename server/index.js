@@ -1,6 +1,7 @@
 const express = require("express") ; 
 const app = express() ; 
-
+const twilio = require('twilio');
+const { generateOTP, sendOTP } = require('./utils/otp');
 const dotenv = require("dotenv")
 
 dotenv.config() ; 
@@ -18,6 +19,3 @@ app.listen(PORT , () => {
     console.log(`App is running at ${PORT}`) ;
 })
  
-app.get("/" , (req , res) => {
-
-})
