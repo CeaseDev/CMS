@@ -12,7 +12,7 @@ router.post('/',async (req,res,next)=>{
     const createUser = new User({
         name : req.body.name,
         // password : req.body.password
-        
+    
     })
 
 })
