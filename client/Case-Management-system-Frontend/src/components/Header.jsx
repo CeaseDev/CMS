@@ -26,7 +26,7 @@ function Header() {
 
             <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>HOME</Link>
             <Link to="/E_Filling" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>E-FILLING</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>DOCUMENTS</Link>
+            <Link to="/Document" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>DOCUMENTS</Link>
             <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>CASE MANAGEMENT</Link>
             <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>PRE TRIAL CONFERENCE</Link>
             <Link to="/Login_Register" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>LOGIN/REGISTER</Link>

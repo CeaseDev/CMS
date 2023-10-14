@@ -4,6 +4,7 @@ import Home from './components/Home'
 import E_filling from './components/E_filling'
 import FooterBottom from './components/FooterBottom'
 import Login_Register from './components/Login_Register'
+import Document from './components/Document'
 
 function App() {
  
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/Home' element={<Home/>}/>
           <Route path='/E_Filling' element={<E_filling/>}/>
+          <Route path='/Document' element={<Document/>}/>
           <Route path='/Login_register' element={<Login_Register/>}/>
       </Routes>
 
