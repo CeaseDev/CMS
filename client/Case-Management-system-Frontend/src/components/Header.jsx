@@ -16,23 +16,22 @@ function Header() {
         </div>
 
         <div className='flex justify-between'>
-          <h2 className=''>Skip to main content</h2>
           <h2 className='ml-3 font-bold underline'>ENGLISH</h2>
         </div>
 
      </div>
 
 
-     <div className='shadow-xl h-10 flex justify-between p-3 w-screen bg-neutral items-center '>
+     <div className='shadow-xl h-10 flex justify-between p-3 w-full bg-neutral items-center mb-2'>
 
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>HOME</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>E-FILLING</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>DOCUMENTS</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>CASE MANAGEMENT</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>PTC</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>LOGIN/REGISTER</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>CONTACT US</Link>
-            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150'>FEEDBACK</Link>
+            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>HOME</Link>
+            <Link to="/E_Filling" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>E-FILLING</Link>
+            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>DOCUMENTS</Link>
+            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>CASE MANAGEMENT</Link>
+            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>PRE TRIAL CONFERENCE</Link>
+            <Link to="/Login_Register" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>LOGIN/REGISTER</Link>
+            {/* <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>CONTACT US</Link>
+            <Link to="/" className='hover:text-red-900 hover:scale-110 transition ease-in-out delay-150 font-bold'>FEEDBACK</Link> */}
 
      </div>
   

@@ -1,21 +1,25 @@
-import { useState } from 'react'
 import Header from './components/Header'
-import{BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Footer from './components/Footer'
-
+import{BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
+import Home from './components/Home'
+import E_filling from './components/E_filling'
+import FooterBottom from './components/FooterBottom'
+import Login_Register from './components/Login_Register'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
     <Router>
        <Header/>
       <Routes>
-          <Route>  </Route>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/Home' element={<Home/>}/>
+          <Route path='/E_Filling' element={<E_filling/>}/>
+          <Route path='/Login_register' element={<Login_Register/>}/>
       </Routes>
 
-       <Footer/>
+       <FooterBottom/>
     </Router>
       
     </>
