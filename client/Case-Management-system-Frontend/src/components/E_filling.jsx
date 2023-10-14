@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Footer() {
+function E_filling() {
   return (
     <div>
-      <h1>Footer</h1>
+      E-Filling
     </div>
   )
 }
 
-export default Footer
+export default E_filling
