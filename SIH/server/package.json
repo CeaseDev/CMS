@@ -1,0 +1,28 @@
+{
+  "name": "sih2023_hex-treme",
+  "version": "1.0.0",
+  "description": "contains server and client for the case management hearing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CeaseDev/CMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CeaseDev/CMS/issues"
+  },
+  "homepage": "https://github.com/CeaseDev/CMS#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.4",
+    "multer": "^1.4.5-lts.1",
+    "twilio": "^4.18.1"
+  }
+}
