@@ -1,15 +1,17 @@
-// To create Schema
-
 const mongoose = require('mongoose');
 
-const judgeSchema = new mongoose.Schema({
-    username: {
+const userSchema  = new mongoose.Schema({
+    UID : {
+        type : String , 
+        unique :true , 
+        required : true
+    }, 
+    fname : {
         type: String,
         required: true,
-        unique: true
     },
-    phone: {
-        type: Number,
+    lname: {
+        type: String,
         required: true
     },
     email: {
@@ -17,14 +19,15 @@ const judgeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    mobile :{
+        type : String , 
+        required : true 
+    }, 
     password: {
         type: String,
         required: true,
-    },
-
-
-},
-    { timestamps: true }
+    }
+}
 );
 
-module.exports = mongoose.model('User', judgeSchema);
+module.exports = mongoose.model('User', userSchema);

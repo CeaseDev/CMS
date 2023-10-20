@@ -5,6 +5,8 @@ const { sendOtp } = require("../utils/otp");
 const {uploadDoc ,  sendOTP, verifyOTP} = require("../controllers/documentController");  
 const { createDirectory } = require("../middlewares/upload") ; 
 const {signup} = require('../controllers/signup');
+const {login} = require('../controllers/login');
+
 const { Efile } = require("../controllers/EfileController") ; 
 
 const multer = require('multer') ;
@@ -40,6 +42,8 @@ router.post("/document/upload", createDirectory , upload.single('file') , upload
 // router.get( "/document/view", viewDoc) ; 
 
 router.post("/Efile" , Efile ) ; 
+router.post("/user/signup" , signup) ;
+router.post("/user/login" , login )  ; 
 
 
 module.exports = router ;   

@@ -1,11 +1,39 @@
-const express = require("express");
-const router = express.Router();
+const bcrypt = require("bcrypt") ; 
+const dotenv = require("dotenv") ; 
+const jwt = require("jsonwebtoken") ; 
+dotenv.config() ; 
 
 const mongoose = require("mongoose");
+const secretKey = process.env.SECRET_KEY ; 
+const User = require("../models/user.js");
 
-// router.get('/login',async (req,res,next)=>{
-//     const name = await mongoose.findOne(req.body.name);
-//     if(req.body.)
-// })
+exports.login = async(req , res )=>{
+    const { email, phone, password } = req.body;
 
-module.exports = router;
+  try {
+    const user = await User.findOne({ $or: [{ email }, { phone }] });
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+
+    const token = jwt.sign({ userId: user._id }, secretKey, {
+      expiresIn: '1h', 
+    });
+
+    return res.status(200).json({
+      message: 'Login successful',
+      token, 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+
+}
