@@ -35,7 +35,7 @@ function E_filling() {
         const response = await axios.post('http://localhost:4000/api/v1/Efile', formData );
         console.log('Response from server:', response.data.data); 
         setCaseNumber(response.data.data.caseNumber) ; 
-        alert('Form Submitted');
+        alert('Form Submitted (Please Note the Case Number from below)');
       }
       else{
         response = null ; 
@@ -245,9 +245,8 @@ function DispCaseNo({ caseNumber }) {
   }
   console.log(caseNumber) ; 
   return (
-    <div className="flex justify-center items-center ">
-      <div>Case Number</div>
-      <div>Please Note this Case Number For Future Reference {caseNumber}</div>
+    <div className="bg-yellow-200 flex justify-center items-center border-2 border-gray-300 rounded-md w-3/4 m-auto p-3 mb-2 ">
+      <h1 className='font-semibold text-3xl'> Please Note this Case Number For Future References: <span className='underline text-red-800 font-extrabold'>{caseNumber}</span></h1>
     </div>
   );
   }
