@@ -7,6 +7,7 @@ import Login_Register from './components/Login_Register'
 import Document from './components/Document'
 import Access from './components/Access'
 import Upload from './components/Upload'
+import Register from './components/Register'
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
           <Route path='/Document' element={<Document/>}/>
           <Route path='/Upload' element={<Upload/>}/>
           <Route path='/Access' element={<Access/>}/>
+          <Route path='/Register' element={<Register/>}/>
           <Route path='/Login_register' element={<Login_Register/>}/>
       </Routes>
 
