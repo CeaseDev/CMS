@@ -1,0 +1,20 @@
+{
+    {
+        "uid": "123",
+        "fname": "akshat",
+        "lname": "kumar",
+        "email": "mailX@mail",
+        "mobile": "888",
+        "password": "password",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIxMjMiLCJpYXQiOjE2OTc4NDYyOTEsImV4cCI6MTY5Nzg0OTg5MX0.e9WHfILe45DDkQe3wdG0spEfOD4Cfa5Fjhb4IGHY-lk"
+    },
+    {
+        "uid": "99",
+        "fname": "delete",
+        "lname": "this",
+        "email": "corn@dela.tel",
+        "mobile": "67139",
+        "password": "yourmum",
+        "tokem": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5OSIsImlhdCI6MTY5Nzg0NjQ5OCwiZXhwIjoxNjk3ODUwMDk4fQ.rVekj-cH8ldO4Rl981dKTpANFpXdADRkqDvg1slZm0Q"
+    }
+}

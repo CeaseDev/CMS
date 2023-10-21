@@ -18,7 +18,7 @@ exports.signup = async (req, res) => {
         session = await mongoose.startSession();
         session.startTransaction();
 
-        const existingUser = await User.findOne({ Uid });
+        const existingUser = await User.findOne({ UID: Uid });
 
         if (existingUser) {
             console.log(existingUser);
@@ -52,8 +52,8 @@ exports.signup = async (req, res) => {
             return res.status(201).json({ message: "user registration successful", token });
         }
 
-        await session.commitTransaction();
-        session.end();
+        // await session.commitTransaction();
+        // session.end();
     }
     catch (err) {
         console.log(err);
