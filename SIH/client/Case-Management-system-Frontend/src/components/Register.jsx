@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom' ; 
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 import axios from "axios";
-function Register() {
-  const [user, setUser] = useState({
-    UID: '',
-    fname: '',
-    lname: '',
-    email: '',
-    phone: '',
-    password: '',
-    retype: '',
-    isMatched: true
-  })
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userState } from '../../recoil/user';
 
+
+
+function Register() {
+  const navigate  = useNavigate();
+  const user = useRecoilValue(userState) ;
+  const setUser = useSetRecoilState(userState) ; 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +46,7 @@ function Register() {
 
           // Save the token in local storage
           localStorage.setItem('token', token);
+          navigate('/')
         })
         .catch(error => {
           // Handle any errors here

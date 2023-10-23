@@ -3,8 +3,8 @@ import Cn from './Cn'
 import Judicial_Process from './Judicial_Process'
 
 function Home() {
-  return (
 
+  return (
     <>
 
       {/* Empower image */}

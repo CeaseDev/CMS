@@ -1,13 +1,51 @@
 const { generateOTP, sendOtp } = require('../utils/otp');
 const User = require('../models/user');
-const Judge = require('../models/judge');
-const Attorney = require('../models/attorneys');
+const { Storage } = new require("@google-cloud/storage")  ; 
+
+const storage = new Storage() ; 
+const path = require("path") ; 
+const fs = require("fs") ; 
 
 exports.uploadDoc = async  (req , res) =>{
-    console.log(req.file) ;
+    console.log("hi there from controller ") ; 
+    const bucketName = 'evidence-doc-bucket';
+    const folderName = req.body.caseNo; 
+    const bucket = storage.bucket(bucketName);
+    const folder = bucket.file(folderName);
+
+    const file = req.file;
+
+    console.log(file) ;
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
     
-    res.json({message : "success"}) ; 
-}
+    try{
+      const gcsFileName = `${folderName}/${Date.now()}-${file.originalname}`;
+      const gcsFile = bucket.file(gcsFileName);
+
+      console.log(gcsFileName) ; 
+
+      const stream = gcsFile.createWriteStream();
+      console.log("created stream ") ; 
+
+      stream.on('error', (err) => {
+        console.error('Error uploading file to Google Cloud Storage:', err);
+        res.status(500).json({ error: 'Failed to upload file to Google Cloud Storage' });
+      });
+      
+      stream.on('finish', () => {
+        console.log("isnose stream on ") ; 
+        res.json({ message: 'File uploaded to Google Cloud Storage', url: gcsFile.publicUrl() });
+      });
+      stream.end(file.buffer);
+    }
+
+    catch(err) {
+      console.log(err) ; 
+      res.send(500) ;
+    }
+  };
 
 const sendOTP = async (req, res) => {
     const { caseNumber, mobileNumber } = req.body;
@@ -67,6 +105,26 @@ const sendOTP = async (req, res) => {
   };
   
   
+exports.getFiles = async (req , res) =>{
+  const caseNo = req.params.caseNo ;
   
-  
-  
+  console.log(caseNo ) ; 
+  // console.log(__dirname) ; 
+  const folderPath = path.join("/Users/aayus/Desktop/SIH/CMS/SIH/server/" , "public" , caseNo) ; 
+  console.log(folderPath)
+
+  if(!fs.existsSync(folderPath)) {
+    return res.status(500).json({message : "No files were found"}) ; 
+  }
+
+  fs.readdir(folderPath, (err, files) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to read folder contents' });
+    }
+    res.json({ files });
+
+    files.forEach( (file) => {
+      console.log(file) ; 
+    })
+  });
+}

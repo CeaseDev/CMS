@@ -4,7 +4,17 @@ const twilio = require('twilio');
 const { generateOTP, sendOTP } = require('./utils/otp');
 const dotenv = require("dotenv");
 const cors = require("cors");
+const bodyParser = require("body-parser") ;
 
+// const multer  = require('multer');
+// const upload = multer();
+// app.use(upload.any()) ; 
+
+app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;

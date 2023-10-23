@@ -20,7 +20,6 @@ function Upload() {
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <div className="mb-4 flex flex-col gap-6">
           <Input type="file" size="lg" label="File" />
-          <textarea name="" id="" cols="30" rows="5" className='border-2 p-1 rounded-md border-gray-500' placeholder='Enter any Message'></textarea>
 
         </div>
         <Button className="mt-6" fullWidth>
