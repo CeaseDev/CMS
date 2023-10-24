@@ -27,7 +27,8 @@ const caseSchema = new mongoose.Schema({
   respondantCity: { type: String, required: true },
   respondantState: { type: String, required: true },
   respondantZip : { type: String, required: true }, 
-  caseDescription: { type: String } 
+  caseDescription: { type: String } , 
+  docLink : [ { type: String }] 
 }) ; 
 
 

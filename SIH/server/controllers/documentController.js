@@ -1,51 +1,57 @@
 const { generateOTP, sendOtp } = require('../utils/otp');
-const User = require('../models/user');
+const Case = require('../models/caseModel');
 const { Storage } = new require("@google-cloud/storage")  ; 
 
 const storage = new Storage() ; 
 const path = require("path") ; 
 const fs = require("fs") ; 
 
-exports.uploadDoc = async  (req , res) =>{
-    console.log("hi there from controller ") ; 
-    const bucketName = 'evidence-doc-bucket';
-    const folderName = req.body.caseNo; 
-    const bucket = storage.bucket(bucketName);
-    const folder = bucket.file(folderName);
+exports.uploadDoc = async (req, res) => {
+  console.log("hi there from controller");
+  const bucketName = 'evidence-doc-bucket';
+  const folderName = req.body.caseNo;
+  const bucket = storage.bucket(bucketName);
 
-    const file = req.file;
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
 
-    console.log(file) ;
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
-    }
-    
-    try{
-      const gcsFileName = `${folderName}/${Date.now()}-${file.originalname}`;
-      const gcsFile = bucket.file(gcsFileName);
+  try {
+    const gcsFileName = `${folderName}/${Date.now()}-${req.file.originalname}`;
+    const gcsFile = bucket.file(gcsFileName);
 
-      console.log(gcsFileName) ; 
+    const stream = gcsFile.createWriteStream();
 
-      const stream = gcsFile.createWriteStream();
-      console.log("created stream ") ; 
+    stream.on('error', (err) => {
+      console.error('Error uploading file to Google Cloud Storage:', err);
+      res.status(500).json({ error: 'Failed to upload file to Google Cloud Storage' });
+    });
 
-      stream.on('error', (err) => {
-        console.error('Error uploading file to Google Cloud Storage:', err);
-        res.status(500).json({ error: 'Failed to upload file to Google Cloud Storage' });
-      });
-      
-      stream.on('finish', () => {
-        console.log("isnose stream on ") ; 
-        res.json({ message: 'File uploaded to Google Cloud Storage', url: gcsFile.publicUrl() });
-      });
-      stream.end(file.buffer);
-    }
+    stream.on('finish', async () => {
+      try {
+        const caseDoc = await Case.findOne({ caseNumber: folderName });
 
-    catch(err) {
-      console.log(err) ; 
-      res.send(500) ;
-    }
-  };
+        if (!caseDoc) {
+          return res.status(500).json({ error: 'Error finding case' });
+        }
+
+        caseDoc.docLink.push(gcsFile.publicUrl());
+
+        await caseDoc.save();
+
+        res.status(200).json({ message: 'File successfully uploaded' });
+      } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Database error' });
+      }
+    });
+
+    stream.end(req.file.buffer);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'Error uploading file to Google Cloud Storage' });
+  }
+};
 
 const sendOTP = async (req, res) => {
     const { caseNumber, mobileNumber } = req.body;
